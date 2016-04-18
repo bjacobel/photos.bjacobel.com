@@ -1,0 +1,32 @@
+language: node_js
+sudo: false
+cache:
+  directories:
+  - node_modules
+  - $HOME/.local/bin
+env:
+  global:
+    - NODE_ENV=production
+    - PATH=$PATH:$HOME/.local/bin
+    - SITEURL=photos.bjacobel.com
+script:
+  - npm run lint
+  - npm test
+before_deploy:
+  - npm run compile
+  - mkdir -p dist
+  - cp index-prod.html dist/index.html
+deploy:
+  provider: s3
+  region: us-east-1
+  bucket: $SITEURL
+  acl: public_read
+  local_dir: dist
+  skip_cleanup: true
+  on:
+    branch: master
+after_deploy:
+  - pip install --user awscli
+  - aws configure set preview.cloudfront true
+  - export CFDISTRO=$(aws cloudfront list-distributions --output json | jq -r --arg siteurl "$SITEURL" '.DistributionList.Items | map(select(.Aliases.Items[0] == $siteurl)) | .[0].Id')
+  - aws cloudfront create-invalidation --distribution-id $CFDISTRO --paths /index.html /main.js
