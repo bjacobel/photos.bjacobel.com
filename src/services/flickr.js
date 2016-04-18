@@ -7,21 +7,34 @@ export const getAllPhotos = () => {
   return fetch(
     flickr.baseUrl + queryString.stringify(
       Object.assign({}, flickr.baseParams, { method: 'flickr.people.getPublicPhotos' })
-  )).then((response) => {
+    )
+  ).then((response) => {
     return response.json();
   }).then((json) => {
     return json;
   });
 };
 
-export const getCollectionIdFromName = (collectionName) => {
-  return new Promise((resolve) => {
-    resolve();
-  });
-};
-
-export const getPhotosFromCollection = (collectionId) => {
-  return new Promise((resolve) => {
-    resolve();
-  });
-};
+// export const getCollectionIdFromName = (collectionName) => {
+//   return fetch(
+//     flickr.baseUrl + queryString.stringify(
+//       Object.assign({}, flickr.baseParams, { method: '' })
+//     )
+//   ).then((response) => {
+//     return response.json();
+//   }).then((json) => {
+//     return json;
+//   });
+// };
+//
+// export const getPhotosFromCollection = (collectionId) => {
+//   return fetch(
+//     flickr.baseUrl + queryString.stringify(
+//       Object.assign({}, flickr.baseParams, { method: '' })
+//     )
+//   ).then((response) => {
+//     return response.json();
+//   }).then((json) => {
+//     return json;
+//   });
+// };
