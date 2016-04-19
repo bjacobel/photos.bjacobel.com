@@ -3,6 +3,9 @@
     "react",
     "es2015"
   ],
+  "plugins": [
+      "transform-object-assign"
+  ],
   "env": {
     "development": {
       "plugins": [

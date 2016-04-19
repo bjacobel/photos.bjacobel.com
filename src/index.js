@@ -9,7 +9,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import './stylesheets';
 import Main from './components/Main';
-import Err from './components/Err';
 import DevTools from './components/DevTools';
 import reducer from './reducers';
 import { showDevTools } from './constants';
@@ -27,7 +26,7 @@ ReactDOM.render(
   <Provider store={ store }>
     <div>
       <Router history={ history }>
-        <Route path="/error" component={ Err } />
+        <Route path="/:collection" component={ Main } />
         <Route path="/" component={ Main } />
       </Router>
       { showDevTools ? <DevTools /> : null }

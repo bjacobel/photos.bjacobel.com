@@ -1,19 +1,30 @@
 import {
-  GET_PHOTOS_SUCCEEDED
+  GET_PHOTOS_SUCCEEDED,
+  GET_PHOTOS_FAILED
 } from '../actions/photos';
-
-import flickrUrl from 'flickr-urls';
 
 const photos = (state = [], action) => {
   switch (action.type) {
   case GET_PHOTOS_SUCCEEDED:
-    return action.payload.photos.photos.photo.map((el) => {
+    return action.payload.photos.map((el) => {
       return {
-        thumbnail: flickrUrl.getFarmUrl(Object.assign({}, el, { size: flickrUrl.IMG_SIZES.LARGE_1024 })),
-        original: flickrUrl.getFarmUrl(Object.assign({}, el, { size: flickrUrl.IMG_SIZES.ORIGINAL })),
+        thumb: {
+          url: el.url_c,
+          height: parseInt(el.height_c, 10),
+          width: parseInt(el.width_c, 10)
+        },
+        original: {
+          url: el.url_o,
+          height: parseInt(el.height_o, 10),
+          width: parseInt(el.width_o, 10)
+        },
         id: el.id
       };
     });
+  case GET_PHOTOS_FAILED:
+    return {
+      error: action.payload.err.stack
+    };
   default:
     return state;
   }

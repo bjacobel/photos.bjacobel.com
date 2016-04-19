@@ -2,11 +2,8 @@ import {
   loadingStarted,
   loadingEnded
 } from './loading';
-import {
-  getAllPhotos,
-  getCollectionIdFromName,
-  getPhotosFromCollection
-} from '../services/flickr';
+
+import { getPhotos } from '../services/flickr';
 
 export const GET_PHOTOS_FAILED = 'GET_PHOTOS_FAILED';
 export const GET_PHOTOS_SUCCEEDED = 'GET_PHOTOS_SUCCEEDED';
@@ -23,33 +20,14 @@ export const getPhotosAsync = (collName = null) => {
   return (dispatch) => {
     dispatch(loadingStarted());
 
-    if (collName !== null) {
-      return getCollectionIdFromName(collName)
-        .then((id) => {
-          getPhotosFromCollection(id)
-          .then((photos) => {
-            dispatch(loadingEnded());
-            dispatch(getPhotosSucceeded(photos));
-          })
-          .catch((err) => {
-            dispatch(loadingEnded());
-            dispatch(getPhotosFailed(err));
-          });
-        })
-        .catch((err) => {
-          dispatch(loadingEnded());
-          dispatch(getPhotosFailed(err));
-        });
-    }
-    // else
-    return getAllPhotos()
-      .then((photos) => {
-        dispatch(loadingEnded());
-        dispatch(getPhotosSucceeded(photos));
-      })
-      .catch((err) => {
-        dispatch(loadingEnded());
-        dispatch(getPhotosFailed(err));
-      });
+    return getPhotos(collName)
+    .then((photos) => {
+      dispatch(loadingEnded());
+      dispatch(getPhotosSucceeded(photos));
+    })
+    .catch((err) => {
+      dispatch(loadingEnded());
+      dispatch(getPhotosFailed(err));
+    });
   };
 };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getPhotosAsync } from '../actions/photos.js';
+import Error from './Error';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,16 +16,20 @@ const mapDispatchToProps = {
 
 class Main extends Component {
   componentWillMount() {
-    this.props.getPhotosAsync();
+    this.props.getPhotosAsync(this.props.params.collection);
   }
 
   render() {
     const { photos } = this.props;
 
+    if (photos.hasOwnProperty('error')) {
+      return <Error error={ photos.error } />;
+    }
+
     return (
       <div>
         { photos.map((el) => {
-          return <img src={ el.thumbnail } key={ el.id } role="presentation" />;
+          return <img src={ el.thumb.url } key={ el.id } role="presentation" />;
         }) }
       </div>
     );

@@ -3,6 +3,7 @@ export const userId = '28268415@N08';
 export const baseUrl = 'https://api.flickr.com/services/rest/?';
 export const baseParams = {
   api_key: apiKey,
+  extras: 'url_c,url_o',
   format: 'json',
   per_page: 500,
   nojsoncallback: 1,
