@@ -3,20 +3,25 @@ import {
   GET_PHOTOS_FAILED
 } from '../actions/photos';
 
+import {
+  smallUrl,
+  smallHeight,
+  smallWidth,
+  fullUrl
+} from '../constants/flickr';
+
 const photos = (state = [], action) => {
   switch (action.type) {
   case GET_PHOTOS_SUCCEEDED:
     return action.payload.photos.map((el) => {
       return {
-        thumb: {
-          url: el.url_c,
-          height: parseInt(el.height_c, 10),
-          width: parseInt(el.width_c, 10)
-        },
-        original: {
-          url: el.url_o,
-          height: parseInt(el.height_o, 10),
-          width: parseInt(el.width_o, 10)
+        src: el[smallUrl],
+        width: parseInt(el[smallWidth], 10),
+        height: parseInt(el[smallHeight], 10),
+        aspectRatio: parseInt(el[smallWidth], 10) / parseInt(el[smallHeight], 10),
+        lightboxImage: {
+          src: el[fullUrl],
+          caption: el.description._content
         },
         id: el.id
       };
