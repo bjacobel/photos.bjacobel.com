@@ -3,7 +3,7 @@ import {
   loadingEnded
 } from './loading';
 
-import { getPhotos } from '../services/flickr';
+import { getPhotos } from '../services/s3';
 
 export const GET_PHOTOS_FAILED = 'GET_PHOTOS_FAILED';
 export const GET_PHOTOS_SUCCEEDED = 'GET_PHOTOS_SUCCEEDED';

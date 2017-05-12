@@ -28,13 +28,6 @@ class Main extends Component {
     }
 
     return <Gallery photos={ photos } />;
-    // return (
-    //   <div>
-    //     { photos.map((el) => {
-    //       return <img src={ el.src } key={ el.id } role="presentation" />;
-    //     }) }
-    //   </div>
-    // );
   }
 }
 

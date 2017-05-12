@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
@@ -8,29 +7,39 @@ import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import './stylesheets';
-import Main from './components/Main';
-import DevTools from './components/DevTools';
+
 import reducer from './reducers';
 import { showDevTools } from './constants';
 
-const middlewares = [
-  applyMiddleware(thunk)
-];
-if (showDevTools) { middlewares.push(DevTools.instrument()); }
+const composeEnhancers = (showDevTools && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;  // eslint-disable-line max-len, no-underscore-dangle
 
-const composedCreateStore = compose.apply(this, middlewares)(createStore);
-const store = composedCreateStore(reducer);
+const store = createStore(reducer, {}, composeEnhancers(
+  applyMiddleware(...[thunk])
+));
+
 const history = syncHistoryWithStore(browserHistory, store);
 
-ReactDOM.render(
-  <Provider store={ store }>
-    <div>
-      <Router history={ history }>
-        <Route path="/:collection" component={ Main } />
-        <Route path="/" component={ Main } />
-      </Router>
-      { showDevTools ? <DevTools /> : null }
-    </div>
-  </Provider>,
-  document.getElementById('main')
-);
+const render = () => {
+  const Main = require('./components/Main').default; // eslint-disable-line global-require
+
+  ReactDOM.render(
+    <Provider store={ store }>
+      <div>
+        <Router history={ history }>
+          <Route path="/:collection" component={ Main } />
+          <Route path="/" component={ Main } />
+        </Router>
+      </div>
+    </Provider>,
+    document.getElementById('main')
+  );
+};
+
+if (module.hot) {
+  module.hot.accept('./components/Main', () => {
+    render();
+  });
+}
+
+render();
+

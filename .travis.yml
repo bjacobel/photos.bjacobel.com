@@ -1,14 +1,15 @@
 language: node_js
 sudo: false
-cache:
-  directories:
-  - node_modules
-  - $HOME/.local/bin
+cache: yarn
 env:
   global:
     - NODE_ENV=production
     - PATH=$PATH:$HOME/.local/bin
     - SITEURL=photos.bjacobel.com
+before_install:
+  - npm install -g yarn
+install:
+  - yarn install
 script:
   - npm run lint
   - npm test

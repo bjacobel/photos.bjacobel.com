@@ -18,7 +18,7 @@ const wpconfig = {
     filename: '[name].js'
   },
   debug: true,
-  devtool: isProd ? null : 'eval',
+  devtool: isProd ? null : 'source-map',
   module: {
     loaders: [
       {
@@ -33,6 +33,10 @@ const wpconfig = {
       {
         test: /\.(eot|ttf|woff|svg)(\?[a-z0-9=]+)?$/,
         loader: 'file-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
@@ -50,10 +54,8 @@ const wpconfig = {
   plugins: [
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
-        production: isProd
-      }
-    })
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
   ]
 };
 
