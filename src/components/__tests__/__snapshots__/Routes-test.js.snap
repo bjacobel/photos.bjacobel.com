@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Router matches snapshot 1`] = `
+<BrowserRouter>
+  <div>
+    <Switch>
+      <GARoute
+        component={[Function]}
+        exact={true}
+        ga={Object {}}
+        path="/"
+      />
+      <GARoute
+        component={[Function]}
+        ga={Object {}}
+        path="/child/:id"
+      />
+      <GARoute
+        component={[Function]}
+        ga={Object {}}
+      />
+    </Switch>
+  </div>
+</BrowserRouter>
+`;
