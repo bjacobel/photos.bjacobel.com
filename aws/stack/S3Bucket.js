@@ -12,7 +12,7 @@ module.exports = {
       CorsRules: [
         {
           AllowedMethods: ['GET'],
-          AllowedOrigins: ['localhost', ref('ProjectFQDomain')],
+          AllowedOrigins: ['localhost:*', ref('ProjectFQDomain')],
         },
       ],
     },

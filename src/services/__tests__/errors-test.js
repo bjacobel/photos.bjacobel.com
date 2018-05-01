@@ -3,7 +3,7 @@
 import Raven from 'raven-js';
 
 import logToRaven from 'services/errors';
-import * as constants from 'src/constants';
+import * as constants from '../../constants';
 
 jest.mock('constants');
 jest.mock('raven-js');

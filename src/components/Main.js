@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import fetchPhotos from 'services/fetchPhotos';
-
 import styles from '../stylesheets/main.css';
 
 export default class Main extends Component {
