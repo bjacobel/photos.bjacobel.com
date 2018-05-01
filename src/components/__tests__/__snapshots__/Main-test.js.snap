@@ -1,12 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`main component un-Connected component matches snapshot with no params 1`] = `
-<Query
-  query={Object {}}
-  variables={
-    Object {
-      "prefix": "photos/",
-    }
-  }
-/>
-`;
+exports[`main component matches snapshot with no params 1`] = `<div />`;

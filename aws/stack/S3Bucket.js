@@ -8,5 +8,13 @@ module.exports = {
     VersioningConfiguration: {
       Status: 'Suspended',
     },
+    CorsConfiguration: {
+      CorsRules: [
+        {
+          AllowedMethods: ['GET'],
+          AllowedOrigins: ['localhost', ref('ProjectFQDomain')],
+        },
+      ],
+    },
   },
 };
