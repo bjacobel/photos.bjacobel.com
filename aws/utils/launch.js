@@ -8,7 +8,13 @@ module.exports = () => {
   stack.apply(
     template,
     {
-      Parameters: config,
+      Parameters: Object.entries(config).reduce((prev, [key, val]) => {
+        if (Object.keys(JSON.parse(template).Parameters).includes(key)) {
+          return { ...prev, [key]: val };
+        } else {
+          return prev;
+        }
+      }, {}),
       Tags: {
         Name: config.ProjectName,
       },

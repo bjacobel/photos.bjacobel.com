@@ -18,7 +18,11 @@ const cssLoader = {
   },
 };
 
-const prodCssConfig = [{ loader: MiniCssExtractPlugin.loader }, cssLoader, { loader: 'postcss-loader' }];
+const prodCssConfig = [
+  { loader: MiniCssExtractPlugin.loader },
+  cssLoader,
+  { loader: 'postcss-loader' },
+];
 
 const devCssConfig = [{ loader: 'style-loader' }, cssLoader, { loader: 'postcss-loader' }];
 
@@ -59,11 +63,16 @@ const wpconfig = {
         test: /\.css$/,
         use: isProd ? prodCssConfig : devCssConfig,
       },
+      {
+        test: /\.g(raph)?ql$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ],
   },
   resolve: {
     extensions: ['.js', '.json', '.css'],
-    modules: [__dirname, path.resolve(__dirname, 'src'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   node: {
     constants: false,

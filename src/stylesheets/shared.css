@@ -8,3 +8,10 @@
 .open-sans {
   font-family: 'Open Sans', sans-serif;
 }
+
+:global(body) {
+  margin: 0;
+  padding: 0;
+}
+
+@value space: 10px;

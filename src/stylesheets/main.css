@@ -1,15 +1,20 @@
-@value lightgrey from './colors.css';
+@value space from './shared.css';
 
-.data {
-  composes: center from './shared.css';
-  composes: open-sans from './shared.css';
-  color: lightgrey;
-  font-style: italic;
+.wall {
+  column-width: 300px;
+  column-gap: space;
+  padding: space;
 }
 
-.logo {
-  height: 100px;
-  background-image: url('../assets/images/logo.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+.brick {
+  margin-bottom: space;
+  width: 100%;
+  display: block;
+  transition: transform 0.15s ease-out;
+  cursor: pointer;
+  backface-visibility: hidden;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }

@@ -7,7 +7,7 @@
  */
 const config = {
   // The common name for your project. Used for naming CloudFormation stacks and CloudFront distros.
-  ProjectName: 'photos.bjacobel.com',
+  ProjectName: 'photos',
 
   // The root domain that your project will live at. Used for creating hosted zones and connecting DNS.
   ProjectDomain: 'bjacobel.com',

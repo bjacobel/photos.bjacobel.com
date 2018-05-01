@@ -19,7 +19,7 @@ module.exports = {
         singleQuote: true,
         trailingComma: 'es5',
         bracketSpacing: true,
-        printWidth: 120,
+        printWidth: 100,
       },
     ],
     'react/jsx-filename-extension': [2, { extensions: ['.js'] }],

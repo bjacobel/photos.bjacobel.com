@@ -5,7 +5,6 @@ import Routes from 'components/Routes';
 import Analytics from 'services/Analytics';
 
 jest.mock('components/Main');
-jest.mock('components/Child');
 jest.mock('components/NotFound');
 jest.mock('services/Analytics');
 
@@ -26,18 +25,18 @@ describe('Router', () => {
     it('has a home route', () => {
       setPath('/');
       const routes = mount(<Routes />);
-      expect(routes.find('Connect(Main)').length).toBe(1);
+      expect(routes.find('Main').length).toBe(1);
     });
 
-    it('has a route for child views that takes a url param', () => {
-      setPath('/child/1');
+    it('has a route for album views that takes a url param', () => {
+      setPath('/album/1');
       const routes = mount(<Routes />);
-      expect(routes.find('Child').length).toBe(1);
-      expect(routes.find('Child').props()).toEqual(
+      expect(routes.find('Main').length).toBe(1);
+      expect(routes.find('Main').props()).toEqual(
         expect.objectContaining({
           match: expect.objectContaining({
             params: {
-              id: '1',
+              album: '1',
             },
           }),
         })

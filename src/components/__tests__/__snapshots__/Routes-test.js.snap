@@ -13,7 +13,7 @@ exports[`Router matches snapshot 1`] = `
       <GARoute
         component={[Function]}
         ga={Object {}}
-        path="/child/:id"
+        path="/album/:album"
       />
       <GARoute
         component={[Function]}

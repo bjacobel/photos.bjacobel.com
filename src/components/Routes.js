@@ -4,7 +4,6 @@ import Route from 'react-router-dom/Route';
 import Switch from 'react-router-dom/Switch';
 
 import NotFound from './NotFound';
-import Child from './Child';
 import Main from './Main';
 import Analytics from '../services/Analytics';
 
@@ -26,7 +25,7 @@ export default class Routes extends Component {
         <div>
           <Switch>
             <GARoute ga={this.ga} path="/" exact component={Main} />
-            <GARoute ga={this.ga} path="/child/:id" component={Child} />
+            <GARoute ga={this.ga} path="/album/:album" component={Main} />
             <GARoute ga={this.ga} component={NotFound} />
           </Switch>
         </div>
